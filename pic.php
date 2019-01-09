@@ -1,8 +1,9 @@
 <?php
   session_start();
 
-  if (isset($_POST["bitmap"])) {
-    $bitmap = $_POST["bitmap"];
+  if (isset($_POST["bitmap"]) && isset($_POST["info"])) {
+	$bitmap = $_POST["bitmap"];
+	$info = $_POST["info"];
 	//＊＊＊認証処理＊＊＊
 	/*
     $pdo = new PDO("sqlite:myblog.sqlite");
@@ -35,7 +36,7 @@
 
 		imagecopy($createimage, $bit[$bitmap_array[$i]],($i%32)*15,intval($i/32)*15,0,0,15,15);
 	}
-		imagegif($createimage, "pixel/merged.gif");
+		imagegif($createimage, "pixel/".$info.".gif");
 		imagedestroy($createimage);
 ?>
 
@@ -48,14 +49,12 @@
  	<link rel="stylesheet" type="text/css" href="style.css">
 
 <h2>完成！</h2>
-<!--ここでMini画像データを取得し、名前を付けて表示したい-->
+<!--$infoは$idに-->
 
 
-
-<img src="pixel/merged.gif">
+<img src=<?php echo "pixel/".$info.".gif"?>>
 <script>console.log("コンソールできたよ！");
 </script>
-
 <br><br>
 <a href="galerie.php">gallery</a>に保存されました. 
 <br> また来てね！
