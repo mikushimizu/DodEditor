@@ -11,9 +11,32 @@
 	$user_on_db = $st->fetch();
 	*/
   }
+	/*
   	echo "<pre>";
 	var_dump($bitmap); //var_dump 配列の中身を出力する
 	echo "</pre>";
+	*/
+
+  //画像読み込み
+  $createimage = imagecreatetruecolor(480, 480);
+  $bit = array();
+
+  for($i=0; $i<16; $i++){
+	$bit[$i] =imagecreatefromgif("pixel/".$i.".gif");
+  }
+
+  //bitmapを配列bitmap_arrayにいれる
+	$bitmap_array = explode(",", $bitmap); 
+	echo (count($bitmap_array)); //配列の数
+	//print_r(gd_info()); PHP GD
+	echo'<br>';
+	for($i=0; $i<count($bitmap_array); $i++){ //1024
+		echo $bitmap_array[$i]; //ID 15とか0とか
+
+		imagecopy($createimage, $bit[$bitmap_array[$i]],($i%32)*15,intval($i/32)*15,0,0,15,15);
+	}
+		imagegif($createimage, "pixel/merged.gif");
+		imagedestroy($createimage);
 ?>
 
 <html><head><link rel="stylesheet" id="coToolbarStyle" href="chrome-extension://cjabmdjcfcfdmffimndhafhblfmpjdpe/toolbar/styles/placeholder.css" type="text/css">
@@ -26,7 +49,10 @@
 
 <h2>完成！</h2>
 <!--ここでMini画像データを取得し、名前を付けて表示したい-->
-<img src="bilder/0000027877.png">
+
+
+
+<img src="pixel/merged.gif">
 <script>console.log("コンソールできたよ！");
 </script>
 
