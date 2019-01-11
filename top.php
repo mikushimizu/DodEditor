@@ -1,19 +1,41 @@
 <?php
   session_start();
-	if(isset($_POST['id'])&&isset($_POST['info'])&&isset($_POST['user'])){
-		$id=$_POST['id'];
-		$info=$_POST['info']; 
-		$user=$_POST['user']; 
-		$pdo=new PDO("sqlite:works.sqlite");
-		$st=$pdo->prepare("INSERT INTO works(id, info, user) VALUES(?, ?, ?)");
-		$st->execute(array($id, $info, $user));
-		$_SESSION["id"]=$id;
-		$_SESSION["info"]=$info;
-		$_SESSION["user"]=$user;
-	} 	      
 
   if (isset($_POST["bitmap"]) && isset($_POST["info"])) {
 	$bitmap = $_POST["bitmap"];
+	$info = $_POST["info"];
+	//＊＊＊認証処理＊＊＊
+	/*
+    $pdo = new PDO("sqlite:myblog.sqlite");
+    $st = $pdo->prepare("select * from user where username = ?;");
+    $st->execute(array($username));
+	$user_on_db = $st->fetch();
+	*/
+  }
+	/*
+  	echo "<pre>";
+	var_dump($bitmap); //var_dump 配列の中身を出力する
+	echo "</pre>";
+	*/
+/*
+  $db = new PDO("sqlite:works.sqlite");
+  $result=$db->query("SELECT * FROM works");
+  for($i=0; $row=$result->fetch(); $i++){
+      echo "<tr valign=center>";
+      echo "<td>". $row['id']."</td>";
+      echo "<td>". $row['info']."</td>";
+      echo "<td>". $row['user']."</td>";
+      echo "</tr>";
+  }*/
+
+  $db = new PDO("sqlite:works.sqlite");
+  $result=$db->query("SELECT * FROM works");
+  for($i=0; $row=$result->fetch(); $i++){
+      echo "<tr valign=center>";?>
+      <img src= <?php echo "img/". $row['id'].".gif"?> width="150" height="150"><?php
+      echo "<br><td>". $row['info']."</td>";
+      echo "<br><td>". $row['user']."</td>";
+      echo "</tr>";
   }
 
   //画像読み込み
@@ -23,19 +45,7 @@
   for($i=0; $i<16; $i++){
 	$bit[$i] =imagecreatefromgif("pixel/".$i.".gif");
   }
-
-  //bitmapを配列bitmap_arrayにいれる
-	$bitmap_array = explode(",", $bitmap); 
-	echo (count($bitmap_array)); //配列の数
-	//print_r(gd_info()); PHP GD
 	echo'<br>';
-	for($i=0; $i<count($bitmap_array); $i++){ //1024
-		echo $bitmap_array[$i]; //ID 15とか0とか
-
-		imagecopy($createimage, $bit[$bitmap_array[$i]],($i%32)*15,intval($i/32)*15,0,0,15,15);
-	}
-		imagegif($createimage, "img/".$id.".gif");
-		imagedestroy($createimage);
 ?>
 
 <html><head><link rel="stylesheet" id="coToolbarStyle" href="chrome-extension://cjabmdjcfcfdmffimndhafhblfmpjdpe/toolbar/styles/placeholder.css" type="text/css">
@@ -46,16 +56,13 @@
 <title>ドット絵完成</title>
  	<link rel="stylesheet" type="text/css" href="style.css">
 
-<h2>完成！</h2>
+<h1>ギャラリー</h1>
 <!--$infoは$idに-->
-<img src=<?php echo "img/".$id.".gif"?>>
+
 <script>console.log("コンソールできたよ！");
 </script>
 <br><br>
-<br> また来てね！
-<br><br>
-<a href="sample6.php">新しく他の画像を作る</a>
-<a href="top.php">トップページに戻る</a>
+<a href="sample6.php">新しく画像を作る</a>
 <br><br>
 </center>
 </body></html>

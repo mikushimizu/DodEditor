@@ -1,6 +1,13 @@
 <html><head>
 <title>ドット絵</title>
 <link rel="stylesheet" type="text/css" href="style.css"> 
+<?php
+$db = new PDO("sqlite:works.sqlite");
+if(isset($info) && isset($user))	{
+		$db->query("INSERT INTO works VALUES(null, '$info','$user')" );
+}
+?>
+
 <script type="text/javascript">
 
 //ボタン読み込み
@@ -68,7 +75,7 @@ for ($i=0; $i<=15; $i++) { ?>
 	<img src=<?php echo 'pixel/' .$i. '.gif' ?> onclick=<?php echo 'selectColor(' .$i. ')' ?> width="30" height="30">
 <?php
 	} 
-for ($i=0; $i<=15; $i++) { ?><br>
+for ($i=0; $i<=15; $i++) { ?>
 	<img src="pixel/nixdrin.gif" width="30" height="30" id=<?php echo 'palette'.$i  ?>>
 <?php
 	}?>
@@ -93,9 +100,11 @@ for($i=0; $i<1024; $i++){
 
 <!--送信-->
 <form action="pic.php" method="post" onsubmit="convert()">
-<input type="hidden" name="bitmap"> <!--[]いるかわかんねｗｗ-->
+<input type="hidden" name="bitmap">
 <!--コメント入力-->
-<input type="text" name="info" value="" class="info" maxlength="80" title="Comment (optional, 80 characters max.)"><br>
+ID<input type="integer" name="id" class="info" maxlength="80" title="Comment (optional, 80 characters max.)"><br>
+タイトル<input type="text" name="info" class="info" maxlength="80" title="Comment (optional, 80 characters max.)"><br>
+作者<input type="text" name="user" class="info" maxlength="80" title="Comment (optional, 80 characters max.)"><br>
 <!--SAVEボタン-->
 <button type="submit" title="guess what this button does..." onmouseover="Bildwechsel('button', Highlight1)" onmouseout="Bildwechsel('button', Normal1)"> 
 <img id="button" src="button-speichern-s.png">
