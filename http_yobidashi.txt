@@ -1,1 +1,1 @@
-http://localhost:80/sample6.php
+http://localhost:80/top.php

@@ -1,6 +1,7 @@
 <html><head>
 <title>エディター</title>
-<link rel="stylesheet" type="text/css" href="style.css"> 
+<link rel="stylesheet" type="text/css" href="style.css">
+<a>Editor</a>
 <?php
 $db = new PDO("sqlite:works.sqlite");
 if(isset($info) && isset($user))	{
@@ -11,9 +12,9 @@ if(isset($info) && isset($user))	{
 <script type="text/javascript">
 //ボタン読み込み
 let Normal1 = new Image();
-Normal1.src = "button-speichern-s.png";
+Normal1.src = "save-before.png";
 let Highlight1 = new Image();
-Highlight1.src = "button-speichern-w.png";
+Highlight1.src = "save-after.png";
 
 function Bildwechsel (BildId, Bildobjekt) {
   window.document.getElementById(BildId).src = Bildobjekt.src;
@@ -37,8 +38,8 @@ function paint(n) {
 }
 
 function selectColor(newColor) {
-	document.getElementById('palette'+color).src = "pixel/nixdrin.gif"
-	document.getElementById('palette'+newColor).src = "pixel/pfeil.gif"
+	document.getElementById('palette'+color).src = "pixel/nixdrin.png"
+	document.getElementById('palette'+newColor).src = "pixel/select.png"
 	color = newColor;
 }
 
@@ -55,6 +56,7 @@ function convert() {
 <table><tbody><tr><td>
 
 <!--大きいドット絵を描画するテーブル-->
+<div class = "big">
 <table border="0" cellspacing="0" cellpadding="0">
 <tbody>
 <?php
@@ -64,22 +66,21 @@ for($i=0; $i<1024; $i++){
 <?php
    if($i%32===31){ echo "</tr>";}
    } ?>
-</tbody></table><br> <!--パレットのための改行-->
+</tbody></table></div><br> <!--パレットのための改行-->
 
-<!--パレット色・矢印-->
+<!--パレット色-->
 <?php
 for ($i=0; $i<=15; $i++) { ?>
 	<img src=<?php echo 'pixel/' .$i. '.gif' ?> onclick=<?php echo 'selectColor(' .$i. ')' ?> width="30" height="30">
 <?php
-	} 
+	}?>
+	<br>
+<!--矢印が入る透明の枠-->
+<?php
 for ($i=0; $i<=15; $i++) { ?>
-	<img src="pixel/nixdrin.gif" width="30" height="30" id=<?php echo 'palette'.$i  ?>>
+	<img src="pixel/nixdrin.png" width="30" height="30" id=<?php echo 'palette'.$i  ?>>
 <?php
 	}?>
-
-<script>
-//selectColor(15);
-</script>
 </td>
 
 <!--小さいドット絵を描画するテーブル-->
@@ -89,7 +90,7 @@ for ($i=0; $i<=15; $i++) { ?>
 <?php
 for($i=0; $i<1024; $i++){
    if($i%32===0){echo '<tr>';}?>
-    <td><img src="a" width="1" height="1" id="mp<?php echo $i ?>"></td>
+    <td><img src='minipixel/0.gif' width="1" height="1" id="mp<?php echo $i ?>"></td>
 <?php
    if($i%32===31){echo "</tr>";}
 	}?>
@@ -99,12 +100,12 @@ for($i=0; $i<1024; $i++){
 <form action="pic.php" method="post" onsubmit="convert()">
 <input type="hidden" name="bitmap">
 <!--コメント入力-->
-ID<input type="integer" name="id" class="info" maxlength="80" title="Comment (optional, 80 characters max.)"><br>
-題名<input type="text" name="info" class="info" maxlength="80" title="Comment (optional, 80 characters max.)"><br>
-作者<input type="text" name="user" class="info" maxlength="80" title="Comment (optional, 80 characters max.)"><br>
+ID<br><input type="integer" name="id" class="info" maxlength="80" title="Comment (optional, 80 characters max.)"><br>
+題名<br><input type="text" name="info" class="info" maxlength="80" title="Comment (optional, 80 characters max.)"><br>
+作者<br><input type="text" name="user" class="info" maxlength="80" title="Comment (optional, 80 characters max.)"><br>
 <!--SAVEボタン-->
-<button type="submit" onmouseover="Bildwechsel('button', Highlight1)" onmouseout="Bildwechsel('button', Normal1)"> 
-<img id="button" src="button-speichern-s.png">
+<button type="submit" onmouseover="Bildwechsel('button', Highlight1)" onmouseout="Bildwechsel('button', Normal1)">
+<img id="button" src="save-before.png">
 </button>
 </form>
 </tbody></table><!--色々のせるテーブルの閉じ-->

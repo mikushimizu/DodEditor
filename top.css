@@ -1,0 +1,26 @@
+html {
+	background: /*#fffacd;*/linear-gradient(-45deg, rgba(246, 255, 0, .8), rgba(255, 0, 161, .8)),url(aroha.jpg);
+  background-size:cover;
+}
+
+h1 {
+font-size: 52;
+text-align: center;
+}
+
+p {
+font-size: 20;
+text-align: center;
+}
+
+.title {
+	margin: 30px;
+/*margin-right: 30px; 画像同士の余白は20px */
+float: left;
+}
+
+.gallery{
+	margin-left: 50px;
+	margin-right: 50px;
+	font-size: 16;
+}

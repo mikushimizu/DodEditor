@@ -1,10 +1,8 @@
-body {
+html {
+	background: linear-gradient(-45deg, rgba(246, 255, 0, .8), rgba(255, 0, 161, .8));/*#eeeeee;url(favohintergrund.gif);*/
 
-	
-	background: url(favohintergrund.gif);
-	
 	font-family: "Trebuchet MS", "Arial";
-	/* 
+	/*
 	Arial
 	Helvetica Neue
 	Times New Roman
@@ -15,20 +13,14 @@ body {
 	Courier New
 	Impact
 	Andale Mono
-	
+
 	// FREAK
 	Small Fonts
 	Fixedsys
-	
+
 	Monaco Mono
-	
+
 	*/
-}
-
-
-a img {
-	border: 0;
-	padding: 1px;
 }
 
 button {
@@ -36,23 +28,36 @@ button {
 	margin: 0;
 	padding: 0;
 	background: 0;
+	margin-top: 15px;
 }
-
 
 .info {
 width: 150px;
 background: #eeeeee;
 border-color:#cccccc; border-width:thin; border-style:solid;
-margin-left: 3px;
 margin-bottom: 10px;
-margin-top: 10px;
+margin-top: 0px;
+}
+
+.big{
+margin-right: 150px;
+}
+
+
+
+
+/*
+
+.link {
+margin-right: 10px;
 }
 
 .Mini {
-margin-left: 3px;
+margin-left: 30px;
 }
 
-.link {
-
-margin-right: 40px;
+a img {
+	border: 0;
+	padding: 1px;
+	margin: 0px;
 }
