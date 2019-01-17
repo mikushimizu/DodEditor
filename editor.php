@@ -3,6 +3,7 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <a>Editor</a>
 <?php
+//DB書き込み
 $db = new PDO("sqlite:works.sqlite");
 if(isset($info) && isset($user))	{
 		$db->query("INSERT INTO works VALUES(null, '$info','$user')" );
@@ -10,6 +11,7 @@ if(isset($info) && isset($user))	{
 ?>
 
 <script type="text/javascript">
+//JavaScript
 //ボタン読み込み
 let Normal1 = new Image();
 Normal1.src = "save-before.png";

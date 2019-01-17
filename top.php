@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="top.css">
 <h1>Gallery</h1>
 <p>
-<a href="editor.php">新しく画像を作る</a><br><br><br>
+<a href="editor.php" class="square_btn">新しく画像を作る</a><br><br><br>
 </p>
   <?php
 
@@ -14,6 +14,7 @@
 	$info = $_POST["info"];
   }
 
+  //DB読み込み
   $db = new PDO("sqlite:works.sqlite");
   $result=$db->query("SELECT * FROM works");
   echo '<div class="gallery">';
@@ -28,12 +29,4 @@
       <?php
     }
   echo  '</div>';
-/*
-  //画像読み込み
-  $createimage = imagecreatetruecolor(480, 480);
-  $bit = array();
-  for($i=0; $i<16; $i++){
-	$bit[$i] =imagecreatefromgif("pixel/".$i.".gif");
-  }
-	echo'<br>';*/
 ?>

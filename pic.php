@@ -46,8 +46,8 @@
 <img src=<?php echo "img/".$id.".gif"?>>
 <br><br>
 <br><br>
-<a href="editor.php">新しく他の画像を作る</a>
-<a href="top.php">トップページに戻る</a>
+<a href="editor.php" class="square_btn">新しく他の画像を作る</a><br><br>
+<a href="top.php" class="square_btn">トップページに戻る</a>
 <br><br>
 </center>
 </body></html>
